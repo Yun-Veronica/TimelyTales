@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'user/profile_style.css' %}">
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/main/">Home</a>
+        <a href="/user/{{ pk }}/profile">Profile</a>
+        {% if is_authenticated %}
+        <a href="/logout">Logout</a>
+        <a href="/posts">+</a>
+
+        {% else %}
+        <a href="/login">Login</a>
+        {% endif %}
+    </nav>
+</header>
+<section class="profile">
+    <div class="profile-info">
+        <!--            <img src="{% static user.profile_picture %}" alt="Picture">-->
+        <img src="{% static user.profile_picture %}" alt="{{ user.username }}">
+        <h2>Username: {{ user.username }}</h2>
+        <p>Name: {{ user.name }} </p>
+        <p>Email: {{ user.email }}</p>
+    </div>
+    <div class="post-feed">
+        <!-- Здесь будут посты пользователя -->
+        <!-- Можно использовать Django Template Tags для вывода постов из бэкенда -->
+    </div>
+</section>
+</body>
+</html>

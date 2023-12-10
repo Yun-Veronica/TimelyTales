@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>>Create Post</title>
+    <link rel="stylesheet" href="{% static 'posts/create_post_style.css' %}">
+
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/main/">Home</a>
+        <a href="/user/{{ pk }}/profile">Profile</a>
+        {% if not is_authenticated %}
+        <a href="/login">Login</a>
+
+        {% else %}
+        <a href="/logout">Logout</a>
+        <a href="/posts" title="Create post">+</a>
+
+        {% endif %}
+    </nav>
+</header>
+
+    <h2>Create Post</h2>
+    <div class="container">
+    <form method="post" action="{% url 'create_post' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="{% static 'posts/style.css' %}">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="/main/">Home</a>
+        <a href="/user/{{ pk }}/profile">Profile</a>
+        {% if not is_authenticated %}
+        <a href="/login">Login</a>
+
+        {% else %}
+        <a href="/logout">Logout</a>
+        <a href="/posts" title="Create post">+</a>
+
+        {% endif %}
+    </nav>
+</header>
+
+<div class="container">
+    {% for post in posts %}
+    <div class="post">
+        <h3>{{ post.title }}</h3>
+        {% if post.picture %}
+        <img src="{% static post.picture %}" alt="{{ post.title }}">
+        {% endif %}
+        <p>{{ post.text }}</p>
+        <span class="like-count"> 0 {{ post.likes }} likes</span>
+
+        <!-- Add more details as needed -->
+    </div>
+    {% endfor %}
+</div>
+
+<footer>
+    <p>© 2023 My Blog</p>
+</footer>
+
+</body>
+</html>
+
+
+<!--{% load static %}-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--<title>Post Detail</title>-->
+<!--<link rel="stylesheet" href="{% static 'posts/style.css' %}">-->
+<!--</head>-->
+
+<!--<body>-->
+
+<!--<div class="post-container">-->
+<!--    {% for post in posts %}-->
+<!--    <div class="post-header">-->
+<!--        <span class="post-title">{{ post.title }}</span>-->
+<!--        <span class="post-author">{{ post.user_id }}</span>-->
+<!--    </div>-->
+<!--    {% if post.picture %}-->
+<!--        <img src="{% static post.picture %}" alt="{{ post.title }}">-->
+<!--    {% endif %}-->
+<!--    <div class="post-text">{{ post.text }}</div>-->
+<!--    <div class="like-section">-->
+<!--        <span class="like-count"> 0 {{ post.likes }} likes</span>-->
+<!--        &lt;!&ndash; Placeholder for like button or icon &ndash;&gt;-->
+<!--    </div>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
