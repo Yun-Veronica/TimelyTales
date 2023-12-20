@@ -1,2 +1,2 @@
 # TimelyTales
-Little blog app
+Little blog app written on Django
